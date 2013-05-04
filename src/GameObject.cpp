@@ -3,9 +3,11 @@
 #endif
 
 #include "GameObject.h"
+#include "World.h"
 
-GameObject::GameObject(unsigned short _entity_id) :
-    entity_id_(_entity_id)
+GameObject::GameObject(entityID _entity_id, World *_world) :
+    entity_id_(_entity_id),
+    world_(_world)
 {
 #ifndef _NDEBUG
     std::cout << "GameObject with ID: " << entity_id_ << " created!" << std::endl;
@@ -19,3 +21,7 @@ GameObject::~GameObject()
 #endif
 }
 
+void GameObject::CreateComponent()
+{
+    world_->CreateComponent(entity_id_);
+}

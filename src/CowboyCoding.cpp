@@ -1,5 +1,6 @@
 #include <iostream>
 #include "World.h"
+#include "GameObject.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,10 +10,9 @@ int main(int argc, char *argv[])
 		std::cout << i << ": " << argv[i] << std::endl; 
 
     World *world = new World();
-    world->CreateGameObject();
-    world->CreateGameObject();
-    world->CreateGameObject();
-    world->CreateGameObject();
+    GameObject* gameObject1 = world->CreateGameObject();
+    gameObject1->CreateComponent();
+
     delete world;
 
 	return 0;
