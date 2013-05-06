@@ -3,25 +3,57 @@
 #endif
 
 #include "GameObject.h"
-#include "World.h"
 
-GameObject::GameObject(entityID _entity_id, World *_world) :
-    entity_id_(_entity_id),
-    world_(_world)
+GameObject::GameObject(go_type_id _myID) :
+    myID_(_myID)
 {
 #ifndef _NDEBUG
-    std::cout << "GameObject with ID: " << entity_id_ << " created!" << std::endl;
+    std::cout << "GameObject with ID: " << myID_ << " created!" << std::endl;
 #endif
 }
 
 GameObject::~GameObject()
 {
 #ifndef _NDEBUG
-    std::cout << "GameObject with ID: " << entity_id_ << " destroyed!" << std::endl;
+    std::cout << "GameObject with ID: " << myID_ << " destroyed!" << std::endl;
 #endif
 }
 
-void GameObject::CreateComponent()
+GOComponent* GameObject::AttachComponent(GOComponent *_goc)
 {
-    world_->CreateComponent(entity_id_);
+    gocomponent_map::iterator iter = componentMap_.find("Here family ID");
+    if ( iter == componentMap_.end())
+    {
+        componentMap_.insert(std::pair<goc_family_id, GOComponent*>("Here family ID", _goc));
+        return 0;
+    }
+    else
+    {
+        return iter->second;
+    }
+}
+
+GOComponent* GameObject::GetComponent(goc_family_id _id)
+{
+    gocomponent_map::iterator iter = componentMap_.find(_id);
+    if (iter == componentMap_.end())
+    {
+        return 0;
+    }
+    else
+    {
+        return iter->second;
+    }
+}
+
+void GameObject::DetachComponent(goc_family_id _id)
+{
+    gocomponent_map::iterator iter = componentMap_.find(_id);
+    if (iter != componentMap_.end())
+    {
+        // Remove component here
+        GOComponent* goc =  iter->second;
+        componentMap_.erase(iter);
+        delete goc;
+    }
 }

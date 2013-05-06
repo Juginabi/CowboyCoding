@@ -1,31 +1,50 @@
 #pragma once
 
+// C++ Standard library includes
+#include <string>
 #include <map>
 
-typedef unsigned short entityID;
-class Component;
-class World;
+// Project specific headers
+#include "GOComponent.h"
+
+// Typedefinitions for this class
+typedef std::string go_type_id;
+
+// GameObject (GO) class is the database key in GameObject/GameObjectComponent-map.
+// GO acts as an entry point for all the components which define the GameObject.
 
 class GameObject
 {
 public:
     // Constructor
-    GameObject(entityID, World*);
+    GameObject(go_type_id _myID);
 
     // Destructor
     ~GameObject();
 
-    // Register component for this entity
-    void CreateComponent();
+    // Return gameObject id
+    const go_type_id& GetId() const;
+
+    // Registers GOComponent to this gameobject. If GOC already exists, returns pointer to replaced GOC.
+    GOComponent* AttachComponent(GOComponent* _goc);
+
+    // Request GOComponent from gameObject using GOC family id, returns NULL if no GOC found.
+    GOComponent* GetComponent(goc_family_id _id);
+
+    // Removes GOComponent from GameObject.
+    void DetachComponent(goc_family_id _id);
 
 private:
     // My id in the world
-    unsigned short entity_id_;
+    go_type_id myID_;
 
-    // Owner world
-    World* world_;
-
+    typedef std::map<goc_family_id, GOComponent*> gocomponent_map;
     // Map containing all the components this entity has registered into.
-    //std::map<unsigned short, Component*> componentMap_;
+    gocomponent_map componentMap_;
 
 };
+
+inline const go_type_id& GameObject::GetId() const
+{
+    return myID_;
+}
