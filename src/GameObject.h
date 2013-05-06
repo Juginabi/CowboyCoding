@@ -34,6 +34,9 @@ public:
     // Removes GOComponent from GameObject.
     void DetachComponent(goc_family_id _id);
 
+    // Remove all GOComponents from GameObject
+    void clearGOComponents();
+
 private:
     // My id in the world
     go_type_id myID_;

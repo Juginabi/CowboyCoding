@@ -57,3 +57,14 @@ void GameObject::DetachComponent(goc_family_id _id)
         delete goc;
     }
 }
+
+void GameObject::clearGOComponents()
+{
+    gocomponent_map::iterator iter = componentMap_.begin();
+    while (iter != componentMap_.end())
+    {
+        // Remove component here
+        delete iter->second;
+    }
+    componentMap_.clear();
+}
