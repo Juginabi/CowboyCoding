@@ -25,7 +25,7 @@ GOComponent* GameObject::AttachComponent(GOComponent *_goc)
     gocomponent_map::iterator iter = componentMap_.find("Here family ID");
     if ( iter == componentMap_.end())
     {
-        componentMap_.insert(std::pair<goc_family_id, GOComponent*>("Here family ID", _goc));
+        componentMap_.insert(std::pair<goc_type_id, GOComponent*>("Here family ID", _goc));
 		#ifndef _NDEBUG
 			std::cout << "GOComponent with ID: " << "Here family ID" << " created!" << std::endl;
 		#endif
@@ -37,7 +37,7 @@ GOComponent* GameObject::AttachComponent(GOComponent *_goc)
     }
 }
 
-GOComponent* GameObject::GetComponent(goc_family_id _id)
+GOComponent* GameObject::GetComponent(goc_type_id _id)
 {
     gocomponent_map::iterator iter = componentMap_.find(_id);
     if (iter == componentMap_.end())
@@ -50,7 +50,7 @@ GOComponent* GameObject::GetComponent(goc_family_id _id)
     }
 }
 
-void GameObject::DetachComponent(goc_family_id _id)
+void GameObject::DetachComponent(goc_type_id _id)
 {
     gocomponent_map::iterator iter = componentMap_.find(_id);
     if (iter != componentMap_.end())

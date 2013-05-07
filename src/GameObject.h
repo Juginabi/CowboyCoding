@@ -29,10 +29,10 @@ public:
     GOComponent* AttachComponent(GOComponent* _goc);
 
     // Request GOComponent from gameObject using GOC family id, returns NULL if no GOC found.
-    GOComponent* GetComponent(goc_family_id _id);
+    GOComponent* GetComponent(goc_type_id _id);
 
     // Removes GOComponent from GameObject.
-    void DetachComponent(goc_family_id _id);
+    void DetachComponent(goc_type_id _id);
 
     // Remove all GOComponents from GameObject
     void clearGOComponents();
@@ -41,7 +41,7 @@ private:
     // My id in the world
     go_type_id myID_;
 
-    typedef std::map<goc_family_id, GOComponent*> gocomponent_map;
+    typedef std::map<goc_type_id, GOComponent*> gocomponent_map;
     // Map containing all the components this entity has registered into.
     gocomponent_map componentMap_;
 

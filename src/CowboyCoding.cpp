@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 		std::cout << i << ": " << argv[i] << std::endl;
 
 	GameObject* go = new GameObject("TestObject");
-	go->AttachComponent(new GOComponent());
+    go->AttachComponent(new GOComponent());
 
 	delete go;
 
