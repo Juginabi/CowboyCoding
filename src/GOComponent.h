@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-// Project specific headers
+// Project specific headers and forward declarations
 class GameObject;
 
 // Class type definitions
