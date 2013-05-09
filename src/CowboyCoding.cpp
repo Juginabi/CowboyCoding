@@ -1,6 +1,7 @@
 #include <iostream>
 #include "GameObject.h"
 #include "GOComponent.h"
+#include "GOC_Position.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
 		std::cout << i << ": " << argv[i] << std::endl;
 
 	GameObject* go = new GameObject("TestObject");
-    go->AttachComponent(new GOComponent());
+    go->AttachComponent(new GOC_Position());
 
 	delete go;
 
