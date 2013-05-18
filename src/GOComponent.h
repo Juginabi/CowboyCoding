@@ -22,10 +22,10 @@ public:
     virtual ~GOComponent() { }
 
     // Query components by family id. Interface method.
-    virtual const goc_type_id& GetFamilyId() const = 0;
+    virtual const goc_type_id GetFamilyId() const = 0;
 
     // Query components by specific component id. Interface method.
-    virtual const goc_type_id& GetComponentId() const = 0;
+    virtual const goc_type_id GetComponentId() const = 0;
 
     // Set owner gameobject for this component
     void SetOwnerGO(GameObject* _go);

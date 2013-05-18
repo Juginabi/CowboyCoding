@@ -7,6 +7,8 @@ ADD_DEFINITIONS(-Wall -g -O0)
 
 file(GLOB SourceFiles ${CMAKE_SOURCE_DIR}/src/*.cpp)
 file(GLOB HeaderFiles ${CMAKE_SOURCE_DIR}/src/*.h)
+file(GLOB MathSourceFiles ${CMAKE_SOURCE_DIR}/src/Math/*.cpp)
+file(GLOB MathHeaderFiles ${CMAKE_SOURCE_DIR}/src/Math/*.h)
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/utils )
 SET(CMAKE_EXE_LINKER_FLAGS "-pg")
@@ -19,7 +21,7 @@ SET(CMAKE_EXE_LINKER_FLAGS "-pg")
 #     message( STATUS "SFML found" )
 #endif( NOT SFML_FOUND )
 
-ADD_EXECUTABLE(CowboyCoding ${SourceFiles} ${HeaderFiles})
+ADD_EXECUTABLE(CowboyCoding ${SourceFiles} ${HeaderFiles} ${MathSourceFiles} ${MathHeaderFiles})
 
 set_target_properties(CowboyCoding PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
