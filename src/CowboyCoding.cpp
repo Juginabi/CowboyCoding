@@ -15,7 +15,11 @@ int main(int argc, char *argv[])
     GOC_Position* position = static_cast<GOC_Position*>(go->GetComponent("GOC_Position"));
     std::cout << "(" << position->GetPosition().x << "," << position->GetPosition().y << "," << position->GetPosition().z << ")" << std::endl;
 
-    position->SetPosition(float3(1.2f, 2.0f, -4.6f));
+    float3 pos = position->GetPosition();
+    // Testing operator overloading
+    pos+=float3(1,2,3);
+    pos+=float3(1,2,3);
+    position->SetPosition(pos);
 
     std::cout << "(" << position->GetPosition().x << "," << position->GetPosition().y << "," << position->GetPosition().z << ")" << std::endl;
 	delete go;
