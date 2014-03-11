@@ -5,47 +5,47 @@
 #include <map>
 
 // Project specific headers and forward declarations
-class GameObject;
+class gameObject;
 
 // Class type definitions
 typedef std::string goc_type_id;
 
-// Class GOComponent acts as an interface class for all the GameObject Components
+// Class component acts as an interface class for all the GameObject Components
 // Derive components from this class and define pure virtual methods in them.
-class GOComponent
+class component
 {
 public:
     // Constructor
-    GOComponent() : parent_(0) { }
+    component() : parent_(0) { }
 
     // Virtual destructor
-    virtual ~GOComponent() { }
+    virtual ~component() { }
 
     // Query components by family id. Interface method.
-    virtual const goc_type_id GetFamilyId() const = 0;
+    virtual const goc_type_id getFamilyId() const = 0;
 
     // Query components by specific component id. Interface method.
-    virtual const goc_type_id GetComponentId() const = 0;
+    virtual const goc_type_id getComponentId() const = 0;
 
     // Set owner gameobject for this component
-    void SetOwnerGO(GameObject* _go);
+    void setOwner(gameObject* _go);
 
     // Query owner GameObject of this component
-    GameObject* GetOwnerGO() const;
+    gameObject* getOwner() const;
 
 private:
-    GameObject* parent_;
+    gameObject* parent_;
 
 };
 
-inline void GOComponent::SetOwnerGO(GameObject *_go)
+inline void component::setOwner(gameObject *_go)
 {
     // If parent is already set, should we inform current parent before
     // we change the ownership of this object to another GameObject?
     parent_ = _go;
 }
 
-inline GameObject* GOComponent::GetOwnerGO() const
+inline gameObject* component::getOwner() const
 {
     return parent_;
 }
