@@ -35,7 +35,12 @@ component* gameObject::attachComponent(component *_goc)
     }
     else
     {
-        return iter->second;
+        component* oldComp = iter->second;
+        iter->second = _goc;
+#ifndef _NDEBUG
+        std::cout << "Replacing component with ID: " << familyId << " created!" << std::endl;
+#endif
+        return oldComp;
     }
 }
 

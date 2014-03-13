@@ -15,8 +15,17 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += src/main.cpp \
+SOURCES +=  src/main.cpp \
             src/scene/component.cpp \
-            src/scene/gameObject.cpp
-HEADERS += src/scene/component.h \
-            src/scene/gameObject.h
+            src/scene/gameObject.cpp \
+            src/scene/components\gocVisual.cpp \
+            src/scene/components\gocVisualSphere.cpp \
+            src/scene/components\gocVisualRectangle.cpp
+    src/scene/components/gocVisualRectangle.cpp
+HEADERS +=  src/scene/component.h \
+            src/scene/gameObject.h \
+            src/scene/components\gocVisual.h \
+            src/scene/components\gocVisualSphere.h \
+            src/scene/components\gocVisualRectangle.h
+
+QMAKE_CXXFLAGS_RELEASE += -D_NDEBUG
