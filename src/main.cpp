@@ -13,16 +13,17 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; ++i)
         std::cout << i << ": " << argv[i] << std::endl;
 
-    gameObject* go = new gameObject("TestObject");
-    component* co1 = go->attachComponent(new gocVisualSphere());
-    if (!co1)
-        std::cout << "component null!\n";
-    component* co2 = go->attachComponent(new gocVisualRectangle());
-    std::cout << "component is: " << co2->getComponentId() << std::endl;
-    component* co3 = go->getComponent("gocVisual");
-    std::cout << "component is: " << co3->getComponentId() << std::endl;
+    gameObject go("stackAllocated");
 
-    delete go;
+    // Attach visual component
+    go.attachComponent(new gocVisualSphere());
+
+    // Attach another visual component. Return value is replaced component.
+    component* co2 = go.attachComponent(new gocVisualRectangle());
+
+    // Delete replaced component
+    if (co2)
+        delete co2;
 
     return a.exec();
 }

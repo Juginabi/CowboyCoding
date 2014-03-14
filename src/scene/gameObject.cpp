@@ -28,6 +28,7 @@ component* gameObject::attachComponent(component *_goc)
     if ( iter == componentMap_.end())
     {
         componentMap_.insert(std::pair<goc_type_id, component*>(familyId, _goc));
+        _goc->setOwner(this);
 #ifndef _NDEBUG
         std::cout << "component with ID: " << familyId << " created!" << std::endl;
 #endif
