@@ -15,7 +15,7 @@ class gocVisual : public component
 {
     // Component interface
 public:
-    const goc_type_id getFamilyId() const { return goc_type_id("gocVisual"); }
+    const goc_type_id getFamilyId() const;
 
     // gocVisual interface.
 public:
@@ -24,3 +24,9 @@ public:
     // This class introduces render method.
     virtual void render() const = 0;
 };
+
+
+inline const goc_type_id gocVisual::getFamilyId() const
+{
+    return goc_type_id("gocVisual");
+}

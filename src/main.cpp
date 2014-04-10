@@ -3,6 +3,9 @@
 #include "src/scene/gameObject.h"
 #include "src/scene/components/gocVisualSphere.h"
 #include "src/scene/components/gocVisualRectangle.h"
+#include "math/float3.h"
+
+using namespace math;
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +27,9 @@ int main(int argc, char *argv[])
     // Delete replaced component
     if (co2)
         delete co2;
+
+    float3 newFloat1(1,2,3), newFloat2(3,4,5);
+    float3 result = newFloat1+newFloat2;
 
     return a.exec();
 }

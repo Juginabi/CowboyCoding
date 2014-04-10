@@ -10,8 +10,13 @@ class gocVisualRectangle : public gocVisual
 
     // gocVisual interface
 public:
-    const goc_type_id getComponentId() const { return goc_type_id("gocVisualRectangle"); }
+    const goc_type_id getComponentId() const;
 
     // This method renders the entity visual on screen.
     virtual void render() const;
 };
+
+inline const goc_type_id gocVisualRectangle::getComponentId() const
+{
+    return goc_type_id("gocVisualRectangle");
+}
