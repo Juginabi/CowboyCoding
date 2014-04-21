@@ -10,44 +10,44 @@
 // Typedefinitions for this class
 typedef std::string go_type_id;
 
-// gameObject (GO) class is the database key in gameObject/gameObjectComponent-map.
-// GO acts as an entry point for all the components which define the gameObject.
+// GameObject (GO) class is the database key in GameObject/GameObjectComponent-map.
+// GO acts as an entry point for all the Components which define the GameObject.
 
-class gameObject
+class GameObject
 {
 public:
     // Constructor
-    gameObject(go_type_id _myID);
+    GameObject(go_type_id _myID);
 
     // Destructor
-    ~gameObject();
+    ~GameObject();
 
-    // Return gameObject id
+    // Return GameObject id
     const go_type_id& getId() const;
 
-    // Registers component to this gameobject. If GOC already exists, returns pointer to replaced GOC.
-    component* attachComponent(component* _goc);
+    // Registers Component to this gameobject. If GOC already exists, returns pointer to replaced GOC.
+    Component* attachComponent(Component* _goc);
 
-    // Request component from gameObject using GOC family id, returns NULL if no GOC found.
-    component* getComponent(goc_type_id _id);
+    // Request Component from GameObject using GOC family id, returns NULL if no GOC found.
+    Component* getComponent(goc_type_id _id);
 
-    // Removes component from gameObject.
+    // Removes Component from GameObject.
     void detachComponent(goc_type_id _id);
 
-    // Remove all components from gameObject
+    // Remove all Components from GameObject
     void clearComponents();
 
 private:
     // My id in the world
     go_type_id myID_;
 
-    typedef std::map<goc_type_id, component*> component_map;
-    // Map containing all the components this entity has registered into.
-    component_map componentMap_;
+    typedef std::map<goc_type_id, Component*> Component_map;
+    // Map containing all the Components this entity has registered into.
+    Component_map ComponentMap_;
 
 };
 
-inline const go_type_id& gameObject::getId() const
+inline const go_type_id& GameObject::getId() const
 {
     return myID_;
 }

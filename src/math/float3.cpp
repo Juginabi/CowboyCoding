@@ -1,35 +1,35 @@
 #include "float3.h"
 
-namespace math
+namespace Math
 {
 
 // Operator overloads
-const float3 operator+(const float3& left, const float3& right)
+const Float3 operator+(const Float3& left, const Float3& right)
 {
-    return float3(left.x + right.x, left.y + right.y, left.z + right.z);
+    return Float3(left.x + right.x, left.y + right.y, left.z + right.z);
 }
 
-const float3 operator+(const float3& left, const int right)
+const Float3 operator+(const Float3& left, const int right)
 {
-    return float3(left.x + right, left.y + right, left.z + right);
+    return Float3(left.x + right, left.y + right, left.z + right);
 }
 
-const float3 operator-(const float3& left, const float3& right)
+const Float3 operator-(const Float3& left, const Float3& right)
 {
-    return float3(left.x - right.x, left.y - right.y, left.z - right.z);
+    return Float3(left.x - right.x, left.y - right.y, left.z - right.z);
 }
 
-const float3 operator-(const float3& left, const int right)
+const Float3 operator-(const Float3& left, const int right)
 {
-    return float3(left.x - right, left.y - right, left.z - right);
+    return Float3(left.x - right, left.y - right, left.z - right);
 }
 
-const float3 operator*(const float3& left, const int right)
+const Float3 operator*(const Float3& left, const int right)
 {
-    return float3(left.x * right, left.y * right, left.z * right);
+    return Float3(left.x * right, left.y * right, left.z * right);
 }
 
-float3& operator +=(float3& left, const float3& right)
+Float3& operator +=(Float3& left, const Float3& right)
 {
     left.x += right.x;
     left.y += right.y;

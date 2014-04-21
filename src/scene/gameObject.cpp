@@ -4,51 +4,51 @@
 
 #include "gameObject.h"
 
-gameObject::gameObject(go_type_id _myID) :
+GameObject::GameObject(go_type_id _myID) :
     myID_(_myID)
 {
 #ifndef _NDEBUG
-    std::cout << "gameObject with ID: " << myID_ << " created!" << std::endl;
+    std::cout << "GameObject with ID: " << myID_ << " created!" << std::endl;
 #endif
 }
 
-gameObject::~gameObject()
+GameObject::~GameObject()
 {
     this->clearComponents();
 #ifndef _NDEBUG
-    std::cout << "gameObject with ID: " << myID_ << " destroyed!" << std::endl;
+    std::cout << "GameObject with ID: " << myID_ << " destroyed!" << std::endl;
 #endif
 }
 
-component* gameObject::attachComponent(component *_goc)
+Component* GameObject::attachComponent(Component *_goc)
 {
     const goc_type_id familyId = _goc->getFamilyId();
 
-    component_map::iterator iter = componentMap_.find(familyId);
-    if ( iter == componentMap_.end())
+    Component_map::iterator iter = ComponentMap_.find(familyId);
+    if ( iter == ComponentMap_.end())
     {
-        componentMap_.insert(std::pair<goc_type_id, component*>(familyId, _goc));
+        ComponentMap_.insert(std::pair<goc_type_id, Component*>(familyId, _goc));
         _goc->setOwner(this);
 #ifndef _NDEBUG
-        std::cout << "component with ID: " << familyId << " created!" << std::endl;
+        std::cout << "Component with ID: " << familyId << " created!" << std::endl;
 #endif
         return 0;
     }
     else
     {
-        component* oldComp = iter->second;
+        Component* oldComp = iter->second;
         iter->second = _goc;
 #ifndef _NDEBUG
-        std::cout << "Replacing component with ID: " << familyId << " created!" << std::endl;
+        std::cout << "Replacing Component with ID: " << familyId << " created!" << std::endl;
 #endif
         return oldComp;
     }
 }
 
-component* gameObject::getComponent(goc_type_id _id)
+Component* GameObject::getComponent(goc_type_id _id)
 {
-    component_map::iterator iter = componentMap_.find(_id);
-    if (iter == componentMap_.end())
+    Component_map::iterator iter = ComponentMap_.find(_id);
+    if (iter == ComponentMap_.end())
     {
         return 0;
     }
@@ -58,29 +58,29 @@ component* gameObject::getComponent(goc_type_id _id)
     }
 }
 
-void gameObject::detachComponent(goc_type_id _id)
+void GameObject::detachComponent(goc_type_id _id)
 {
-    component_map::iterator iter = componentMap_.find(_id);
-    if (iter != componentMap_.end())
+    Component_map::iterator iter = ComponentMap_.find(_id);
+    if (iter != ComponentMap_.end())
     {
-        // Remove component here
-        component* goc = iter->second;
-        componentMap_.erase(iter);
+        // Remove Component here
+        Component* goc = iter->second;
+        ComponentMap_.erase(iter);
         delete goc;
     }
 }
 
-void gameObject::clearComponents()
+void GameObject::clearComponents()
 {
-    component_map::iterator iter = componentMap_.begin();
-    while (iter != componentMap_.end())
+    Component_map::iterator iter = ComponentMap_.begin();
+    while (iter != ComponentMap_.end())
     {
-        // Remove component here
+        // Remove Component here
 #ifndef _NDEBUG
-        std::cout << "Removing component ID: " << iter->first << std::endl;
+        std::cout << "Removing Component ID: " << iter->first << std::endl;
 #endif
         delete iter->second;
         ++iter;
     }
-    componentMap_.clear();
+    ComponentMap_.clear();
 }

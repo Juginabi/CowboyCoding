@@ -1,27 +1,27 @@
 #pragma once
 
-namespace math
+namespace Math
 {
 
-class float3
+class Float3
 {
 public:
     // Defaut constructor
-    float3() : x(0.0f), y(0.0f), z(0.0f) { }
+    Float3() : x(0.0f), y(0.0f), z(0.0f) { }
 
     // Custom constructors
-    float3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) { }
+    Float3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) { }
 
     // Destructor
-    ~float3() { }
+    ~Float3() { }
 
     // Syntactic sugar aka. operator overloads.
-    friend const float3 operator+(const float3& left, const float3& right);
-    friend const float3 operator+(const float3& left, const int right);
-    friend const float3 operator-(const float3& left, const float3& right);
-    friend const float3 operator-(const float3& left, const int right);
-    friend const float3 operator*(const float3& left, const int right);
-    friend float3& operator+=(float3& left, const float3& right);
+    friend const Float3 operator+(const Float3& left, const Float3& right);
+    friend const Float3 operator+(const Float3& left, const int right);
+    friend const Float3 operator-(const Float3& left, const Float3& right);
+    friend const Float3 operator-(const Float3& left, const int right);
+    friend const Float3 operator*(const Float3& left, const int right);
+    friend Float3& operator+=(Float3& left, const Float3& right);
 
     float x;
     float y;

@@ -16,20 +16,20 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; ++i)
         std::cout << i << ": " << argv[i] << std::endl;
 
-    gameObject go("stackAllocated");
+    GameObject go("stackAllocated");
 
-    // Attach visual component
+    // Attach visual Component
     go.attachComponent(new gocVisualSphere());
 
-    // Attach another visual component. Return value is replaced component.
-    component* co2 = go.attachComponent(new gocVisualRectangle());
+    // Attach another visual Component. Return value is replaced Component.
+    Component* co2 = go.attachComponent(new gocVisualRectangle());
 
-    // Delete replaced component
+    // Delete replaced Component
     if (co2)
         delete co2;
 
-    float3 newFloat1(1,2,3), newFloat2(3,4,5);
-    float3 result = newFloat1+newFloat2;
+    Float3 newFloat1(1,2,3), newFloat2(3,4,5);
+    Float3 result = newFloat1+newFloat2;
 
     return a.exec();
 }
