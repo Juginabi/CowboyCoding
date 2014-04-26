@@ -1,24 +1,28 @@
 #pragma once
 
-// C++ Standard library includes
-#include <string>
-#include <map>
+#include "../../commonTypeDefs.h"
 
 // Project specific headers and forward declarations
 #include "../component.h"
 
-// Class type definitions
-typedef std::string goc_type_id;
+#ifndef _NDEBUG
+#include <iostream>
+#endif
 
-// Class gocVisual component is a family of components which make the entity visible
-class gocVisual : public component
+// Class GocVisual component is a family of components which make the entity visible
+class GocVisual : public Component
 {
     // Component interface
 public:
+    // Can be used to query family id of components inherited from this.
     const goc_type_id getFamilyId() const;
 
-    // gocVisual interface.
+    // Destructor
+    ~GocVisual();
+
+    // GocVisual interface.
 public:
+    // Can be used to query specific type id of component inherited from this.
     virtual const goc_type_id getComponentId() const = 0;
 
     // This class introduces render method.
@@ -26,7 +30,12 @@ public:
 };
 
 
-inline const goc_type_id gocVisual::getFamilyId() const
-{
-    return goc_type_id("gocVisual");
+inline const goc_type_id GocVisual::getFamilyId() const {
+    return goc_type_id("GocVisual");
+}
+
+inline GocVisual::~GocVisual() {
+#ifndef _NDEBUG
+    std::cout << "GocVisual destructor" << std::endl;
+#endif
 }

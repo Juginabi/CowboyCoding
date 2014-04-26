@@ -1,6 +1,6 @@
 #include "gocVisualRectangle.h"
 #include "../gameObject.h"
 
-void gocVisualRectangle::render() const {
+void GocVisualRectangle::render() const {
     // something
 }

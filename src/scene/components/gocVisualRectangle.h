@@ -3,20 +3,33 @@
 // Project specific headers and forward declarations
 #include "gocVisual.h"
 
-class gocVisualRectangle : public gocVisual
+#ifndef _NDEBUG
+    #include <iostream>
+#endif
+
+class GocVisualRectangle : public GocVisual
 {
     // Class type definitions
     typedef std::string goc_type_id;
 
-    // gocVisual interface
+    // GocVisual interface
 public:
+    // Destructor
+    ~GocVisualRectangle();
+
+    // Can be used to query family id of components inherited from this.
     const goc_type_id getComponentId() const;
 
     // This method renders the entity visual on screen.
-    virtual void render() const;
+    void render() const;
 };
 
-inline const goc_type_id gocVisualRectangle::getComponentId() const
-{
-    return goc_type_id("gocVisualRectangle");
+inline const goc_type_id GocVisualRectangle::getComponentId() const {
+    return goc_type_id("GocVisualRectangle");
+}
+
+inline GocVisualRectangle::~GocVisualRectangle() {
+#ifndef _NDEBUG
+    std::cout << "GocVisualRectangle destructor" << std::endl;
+#endif
 }

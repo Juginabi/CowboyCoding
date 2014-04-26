@@ -15,6 +15,18 @@ public:
     // Destructor
     ~Float3() { }
 
+    // Normalizes this Float3
+    void normalize();
+
+    // Returns unit vector from this Float3
+    Float3 getNormalized() const;
+
+    // Return length of this vector
+    double getLengthSquared() const;
+
+    // Return non-squared length of this vector
+    double getLengthNonSquared() const;
+
     // Syntactic sugar aka. operator overloads.
     friend const Float3 operator+(const Float3& left, const Float3& right);
     friend const Float3 operator+(const Float3& left, const int right);

@@ -1,5 +1,5 @@
 #include "gocVisualSphere.h"
 
-void gocVisualSphere::render() const {
+void GocVisualSphere::render() const {
     // This renders the entity on screen
 }

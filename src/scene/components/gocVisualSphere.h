@@ -1,21 +1,29 @@
 #pragma once
 
-// C++ Standard library includes
-#include <string>
-#include <map>
+#include "../../commonTypeDefs.h"
+
+#ifndef _NDEBUG
+    #include <iostream>
+#endif
 
 // Project specific headers and forward declarations
 #include "gocVisual.h"
 
-class gocVisualSphere : public gocVisual
-{
-    // Class type definitions
-    typedef std::string goc_type_id;
-
-    // gocVisual interface
+class GocVisualSphere : public GocVisual {
+    // GocVisual interface
 public:
-    const goc_type_id getComponentId() const { return goc_type_id("gocVisualSphere"); }
+    // Destructor
+    ~GocVisualSphere();
+
+    // Can be used to query family id of components inherited from this.
+    const goc_type_id getComponentId() const { return goc_type_id("GocVisualSphere"); }
 
     // This method renders the entity visual on screen.
-    virtual void render() const;
+    void render() const;
 };
+
+inline GocVisualSphere::~GocVisualSphere() {
+#ifndef _NDEBUG
+    std::cout << "GocVisualSphere destructor" << std::endl;
+#endif
+}
