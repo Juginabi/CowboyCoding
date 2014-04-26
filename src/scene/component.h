@@ -15,16 +15,16 @@ class Component
 {
 public:
     // Constructor
-    Component() : parent_(0) { }
+    Component();
 
     // Virtual destructor
     virtual ~Component();
 
     // Query Components by family id. Interface method.
-    virtual const goc_type_id getFamilyId() const = 0;
+    virtual const goc_type_id &getFamilyId() const = 0;
 
     // Query Components by specific Component id. Interface method.
-    virtual const goc_type_id getComponentId() const = 0;
+    virtual const goc_type_id &getComponentId() const = 0;
 
     // Set owner gameobject for this Component
     void setOwner(GameObject* _go);
@@ -47,8 +47,14 @@ inline GameObject* Component::getOwner() const {
     return parent_;
 }
 
+inline Component::Component() : parent_(0) {
+#ifndef _NDEBUG
+    std::cout << "[Component] created." << std::endl;
+#endif
+}
+
 inline Component::~Component() {
 #ifndef _NDEBUG
-    std::cout << "Component destructor" << std::endl;
+    std::cout << "[Component] destructor" << std::endl;
 #endif
 }

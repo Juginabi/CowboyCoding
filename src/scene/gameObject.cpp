@@ -8,26 +8,27 @@
 GameObject::GameObject(go_type_id _myID) :
     myID_(_myID) {
 #ifndef _NDEBUG
-    std::cout << "GameObject with ID: " << myID_ << " created!" << std::endl;
+    std::cout << "[GameObject] with ID: " << myID_ << " created!" << std::endl;
 #endif
 }
 
 GameObject::~GameObject() {
     clearComponents();
 #ifndef _NDEBUG
-    std::cout << "GameObject with ID: " << myID_ << " destroyed!" << std::endl;
+    std::cout << "[GameObject] with ID: " << myID_ << " destroyed!" << std::endl;
 #endif
 }
 
 ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
     const goc_type_id familyId = _goc->getFamilyId();
+    const goc_type_id componentId = _goc->getComponentId();
 
     Component_map::iterator iter = ComponentMap_.find(familyId);
     if ( iter == ComponentMap_.end() ) {
         ComponentMap_.insert(std::pair<goc_type_id, ComponentPtr>(familyId, _goc));
         _goc->setOwner(this);
 #ifndef _NDEBUG
-        std::cout << "Component with ID: " << familyId << " created!" << std::endl;
+        std::cout << "[GameObject] Component with ID: " << familyId << "(" << componentId << ")" << " attached!" << std::endl;
 #endif
         return 0;
     }
@@ -36,7 +37,7 @@ ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
         ComponentPtr oldComp = iter->second;
         iter->second = _goc;
 #ifndef _NDEBUG
-        std::cout << "Replacing Component with ID: " << familyId << " created!" << std::endl;
+        std::cout << "[GameObject] Replacing Component with ID: " << familyId << "(" << componentId << ")" << std::endl;
 #endif
         return oldComp;
     }

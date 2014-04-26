@@ -17,16 +17,12 @@ int main(int argc, char *argv[])
 
     GameObjectPtr go(new GameObject("Somename"));
     ComponentPtr goc(new GocVisualRectangle);
+    ComponentPtr goc2(new GocVisualSphere);
 
     // Test attach with ownership transfer then clear all components
     go->attachComponent(std::move(goc));
+    go->attachComponent(std::move(goc2));
     go->clearComponents();
-
-   // Testing
-   Float3 newFloat1(1,2,3);
-   std::cout << "Length: " << newFloat1.getLengthSquared() << ", x: " << newFloat1.x << ", y: " << newFloat1.y << ", z: " << newFloat1.z << std::endl;
-   newFloat1.normalize();
-   std::cout << "Length: " << newFloat1.getLengthSquared() << ", x: " << newFloat1.x << ", y: " << newFloat1.y << ", z: " << newFloat1.z << std::endl;
 
    return 0;
 }
