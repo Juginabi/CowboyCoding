@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     GameObjectPtr go(new GameObject("Somename"));
     ComponentPtr goc(new GocVisualRectangle);
 
-    // Test attach with ownership transfer then clear all
+    // Test attach with ownership transfer then clear all components
     go->attachComponent(std::move(goc));
     go->clearComponents();
 
