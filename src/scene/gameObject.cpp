@@ -1,7 +1,6 @@
 #ifndef _NDEBUG
 #include <iostream>
 #endif
-
 #include <memory>
 #include "gameObject.h"
 
@@ -31,8 +30,7 @@ ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
         std::cout << "[GameObject] Component with ID: " << familyId << "(" << componentId << ")" << " attached!" << std::endl;
 #endif
         return 0;
-    }
-    else {
+    } else {
         ComponentPtr oldComp = iter->second;
         iter->second = _goc;
 #ifndef _NDEBUG
@@ -45,12 +43,9 @@ ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
 ComponentPtr GameObject::getComponent(goc_type_id _id) {
     // Locate goc type and return it. If not found return 0.
     Component_map::iterator iter = ComponentMap_.find(_id);
-    if (iter == ComponentMap_.end())
-    {
+    if (iter == ComponentMap_.end()) {
         return 0;
-    }
-    else
-    {
+    } else {
         return iter->second;
     }
 }
@@ -58,8 +53,7 @@ ComponentPtr GameObject::getComponent(goc_type_id _id) {
 void GameObject::detachComponent(goc_type_id _id) {
     // Find goc type and erase it
     Component_map::iterator iter = ComponentMap_.find(_id);
-    if (iter != ComponentMap_.end())
-    {
+    if (iter != ComponentMap_.end()) {
         // Remove Component here
         ComponentMap_.erase(iter);
     }
