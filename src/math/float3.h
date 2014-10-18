@@ -35,9 +35,10 @@ public:
     friend const Float3 operator*(const Float3& left, const int right);
     friend Float3& operator+=(Float3& left, const Float3& right);
 
-    float x;
-    float y;
-    float z;
+    // Save primitives in 64bit accuracy
+    double x;
+    double y;
+    double z;
 };
 
 
