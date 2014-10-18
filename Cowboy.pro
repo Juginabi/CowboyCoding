@@ -22,7 +22,6 @@ SOURCES +=  src/main.cpp \
             src/scene/components/gocVisualSphere.cpp \
             src/scene/components/gocVisualRectangle.cpp \
             src/math/float3.cpp
-    src/scene/components/gocVisualRectangle.cpp
 HEADERS +=  src/scene/component.h \
             src/scene/gameObject.h \
             src/scene/components/gocVisual.h \
