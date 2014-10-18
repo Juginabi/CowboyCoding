@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../commonTypeDefs.h"
-
 #ifndef _NDEBUG
     #include <iostream>
 #endif
@@ -16,13 +14,13 @@ public:
     GocVisualSphere();
 
     // Destructor
-    ~GocVisualSphere();
+    virtual ~GocVisualSphere();
 
     // Can be used to query family id of components inherited from this.
     const goc_type_id &getComponentId() const;
 
     // This method renders the entity visual on screen.
-    void render() const;
+    virtual void render() const;
 
 private:
     static const goc_type_id componentId_;

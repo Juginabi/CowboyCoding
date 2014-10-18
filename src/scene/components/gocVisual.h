@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../commonTypeDefs.h"
-
 // Project specific headers and forward declarations
 #include "../component.h"
 
@@ -21,12 +19,12 @@ public:
     GocVisual();
 
     // Destructor
-    ~GocVisual();
+    virtual ~GocVisual();
 
     // GocVisual interface.
 public:
     // Can be used to query specific type id of component inherited from this.
-    virtual const goc_type_id& getComponentId() const = 0;
+    virtual const goc_type_id &getComponentId() const = 0;
 
     // This class introduces render method.
     virtual void render() const = 0;

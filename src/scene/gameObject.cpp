@@ -21,13 +21,14 @@ GameObject::~GameObject() {
 
 ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
     const goc_type_id familyId = _goc->getFamilyId();
+    const goc_type_id componentId = _goc->getComponentId();
 
     Component_map::iterator iter = ComponentMap_.find(familyId);
     if ( iter == ComponentMap_.end() ) {
         ComponentMap_.insert(std::pair<goc_type_id, ComponentPtr>(familyId, _goc));
         _goc->setOwner(this);
 #ifndef _NDEBUG
-        std::cout << "[GameObject] Component with ID: " << familyId << "(" << _goc->getComponentId() << ")" << " attached!" << std::endl;
+        std::cout << "[GameObject] Component with ID: " << familyId << "(" << componentId << ")" << " attached!" << std::endl;
 #endif
         return 0;
     }
