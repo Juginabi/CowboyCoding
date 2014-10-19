@@ -4,7 +4,7 @@
 #include <memory>
 #include "gameObject.h"
 
-GameObject::GameObject(go_type_id _myID) :
+GameObject::GameObject(go_type_name _myID) :
     myID_(_myID) {
 #ifndef _NDEBUG
     std::cout << "[GameObject] with ID: " << myID_ << " created!" << std::endl;
@@ -19,12 +19,12 @@ GameObject::~GameObject() {
 }
 
 ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
-    const goc_type_id familyId = _goc->getFamilyId();
-    const goc_type_id componentId = _goc->getComponentId();
+    const goc_type_name familyId = _goc->getFamilyId();
+    const goc_type_name componentId = _goc->getComponentId();
 
     Component_map::iterator iter = ComponentMap_.find(familyId);
     if ( iter == ComponentMap_.end() ) {
-        ComponentMap_.insert(std::pair<goc_type_id, ComponentPtr>(familyId, _goc));
+        ComponentMap_.insert(std::pair<goc_type_name, ComponentPtr>(familyId, _goc));
         _goc->setOwner(this);
 #ifndef _NDEBUG
         std::cout << "[GameObject] Component with ID: " << familyId << "(" << componentId << ")" << " attached!" << std::endl;
@@ -40,7 +40,7 @@ ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
     }
 }
 
-ComponentPtr GameObject::getComponent(goc_type_id _id) {
+ComponentPtr GameObject::getComponent(goc_type_name _id) {
     // Locate goc type and return it. If not found return 0.
     Component_map::iterator iter = ComponentMap_.find(_id);
     if (iter == ComponentMap_.end()) {
@@ -50,7 +50,7 @@ ComponentPtr GameObject::getComponent(goc_type_id _id) {
     }
 }
 
-void GameObject::detachComponent(goc_type_id _id) {
+void GameObject::detachComponent(goc_type_name _id) {
     // Find goc type and erase it
     Component_map::iterator iter = ComponentMap_.find(_id);
     if (iter != ComponentMap_.end()) {

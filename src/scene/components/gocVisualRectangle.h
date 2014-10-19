@@ -17,16 +17,16 @@ public:
     virtual ~GocVisualRectangle();
 
     // Can be used to query component id
-    const goc_type_id &getComponentId() const;
+    const goc_type_name &getComponentId() const;
 
     // This method renders the entity visual on screen.
     virtual void render() const;
 
 private:
-    static const goc_type_id componentId_;
+    static const goc_type_name componentId_;
 };
 
-inline const goc_type_id &GocVisualRectangle::getComponentId() const {
+inline const goc_type_name &GocVisualRectangle::getComponentId() const {
     return componentId_;
 }
 

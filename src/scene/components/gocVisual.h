@@ -13,7 +13,7 @@ class GocVisual : public Component
     // Component interface
 public:
     // Can be used to query family id of components inherited from this.
-    const goc_type_id& getFamilyId() const;
+    const goc_type_name& getFamilyId() const;
 
     // Constructor
     GocVisual();
@@ -24,16 +24,16 @@ public:
     // GocVisual interface.
 public:
     // Can be used to query specific type id of component inherited from this.
-    virtual const goc_type_id &getComponentId() const = 0;
+    virtual const goc_type_name &getComponentId() const = 0;
 
     // This class introduces render method.
     virtual void render() const = 0;
 
 private:
-    static const goc_type_id familyId_;
+    static const goc_type_name familyId_;
 };
 
-inline const goc_type_id &GocVisual::getFamilyId() const {
+inline const goc_type_name &GocVisual::getFamilyId() const {
     return familyId_;
 }
 

@@ -21,12 +21,14 @@ SOURCES +=  src/main.cpp \
             src/scene/components/gocVisual.cpp \
             src/scene/components/gocVisualSphere.cpp \
             src/scene/components/gocVisualRectangle.cpp \
+            src/scene/gameObjectManager.cpp \
             src/math/float3.cpp
 HEADERS +=  src/scene/component.h \
             src/scene/gameObject.h \
             src/scene/components/gocVisual.h \
             src/scene/components/gocVisualSphere.h \
             src/scene/components/gocVisualRectangle.h \
+            src/scene/gameObjectManager.h \
             src/math/float3.h \
             src/commonTypeDefs.h
 

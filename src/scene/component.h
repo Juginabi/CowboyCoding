@@ -21,10 +21,10 @@ public:
     virtual ~Component();
 
     // Query Components by family id. Interface method.
-    virtual const goc_type_id &getFamilyId() const = 0;
+    virtual const goc_type_name &getFamilyId() const = 0;
 
     // Query Components by specific Component id. Interface method.
-    virtual const goc_type_id &getComponentId() const = 0;
+    virtual const goc_type_name &getComponentId() const = 0;
 
     // Set owner gameobject for this Component
     void setOwner(GameObject* _go);
