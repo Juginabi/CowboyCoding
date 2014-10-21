@@ -5,6 +5,7 @@
 #include "src/scene/gameObject.h"
 #include "src/scene/components/gocVisualRectangle.h"
 #include "src/scene/components/gocVisualSphere.h"
+#include "src/scene/gameObjectManager.h"
 #include "math/float3.h"
 #include "commonTypeDefs.h"
 
@@ -21,13 +22,14 @@ int main(int argc, char *argv[])
         std::cout << i << ": " << argv[i] << std::endl;
 
     try {
-        GameObjectPtr go(new GameObject("Somename"));
-        ComponentPtr goc(new GocVisualRectangle);
-        ComponentPtr goc2(new GocVisualSphere);
+        GameObject *go = new GameObject("Somename");
+        Component *goc = new GocVisualRectangle;
+        Component *goc2 = new GocVisualSphere;
+        gameObjectManager *goManager = gameObjectManager::getInstance();
 
         // Test attach with ownership transfer then clear all components
-        go->attachComponent(std::move(goc));
-        go->attachComponent(std::move(goc2));
+        go->attachComponent(goc);
+        go->attachComponent(goc2);
         go->clearComponents();
     } catch (std::bad_alloc &e) {
         return EXIT_FAILURE;

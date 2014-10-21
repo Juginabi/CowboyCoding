@@ -1,12 +1,13 @@
 #include "gameObjectManager.h"
 
 bool gameObjectManager::goManagerFlag_ = false;
-gameObjectManager gameObjectManager::goManager_ = NULL;
+gameObjectManager *gameObjectManager::goManager_ = 0;
 
-gameObjectManager::getInstance() {
-    if (goManagerFlag_) {
-        return goManager_;
-    } else {
-        /// TODO return gameObjectManager pointer
+gameObjectManager* gameObjectManager::getInstance() {
+    if (!goManagerFlag_) {
+        // First time query of this class. Let us create new instance
+        goManager_= new gameObjectManager();
+        goManagerFlag_ = !goManagerFlag_;
     }
+    return goManager_;
 }

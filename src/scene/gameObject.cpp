@@ -18,20 +18,20 @@ GameObject::~GameObject() {
 #endif
 }
 
-ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
+Component *GameObject::attachComponent(Component *_goc) {
     const goc_type_name familyId = _goc->getFamilyId();
     const goc_type_name componentId = _goc->getComponentId();
 
     Component_map::iterator iter = ComponentMap_.find(familyId);
     if ( iter == ComponentMap_.end() ) {
-        ComponentMap_.insert(std::pair<goc_type_name, ComponentPtr>(familyId, _goc));
+        ComponentMap_.insert(std::pair<goc_type_name, Component*>(familyId, _goc));
         _goc->setOwner(this);
 #ifndef _NDEBUG
         std::cout << "[GameObject] Component with ID: " << familyId << "(" << componentId << ")" << " attached!" << std::endl;
 #endif
         return 0;
     } else {
-        ComponentPtr oldComp = iter->second;
+        Component *oldComp = iter->second;
         iter->second = _goc;
 #ifndef _NDEBUG
         std::cout << "[GameObject] Replacing Component with ID: " << familyId << "(" << componentId << ")" << std::endl;
@@ -40,7 +40,7 @@ ComponentPtr GameObject::attachComponent(ComponentPtr _goc) {
     }
 }
 
-ComponentPtr GameObject::getComponent(goc_type_name _id) {
+Component *GameObject::getComponent(goc_type_name _id) {
     // Locate goc type and return it. If not found return 0.
     Component_map::iterator iter = ComponentMap_.find(_id);
     if (iter == ComponentMap_.end()) {

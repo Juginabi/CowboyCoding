@@ -20,10 +20,10 @@ public:
     const go_type_name& getId() const;
 
     // Registers Component to this gameobject. If GOC already exists, returns pointer to replaced GOC.
-    ComponentPtr attachComponent(ComponentPtr _goc);
+    Component* attachComponent(Component* _goc);
 
     // Request Component from GameObject using GOC family id, returns NULL if no GOC found.
-    ComponentPtr getComponent(goc_type_name _id);
+    Component* getComponent(goc_type_name _id);
 
     // Removes Component from GameObject.
     void detachComponent(goc_type_name _id);

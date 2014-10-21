@@ -4,13 +4,11 @@
 
 class gameObjectManager {
 public:
-    ~gameObjectManager();
-
     ///
     /// \brief Get instance of this singleton class
     /// \return Shared pointer of this class
     ///
-    goManagerPtr getInstance();
+    static gameObjectManager *getInstance();
 
     ///
     /// \brief Create gameObject with name and component list as parameter
@@ -42,15 +40,15 @@ public:
     ///
     void getGameObjectById(go_type_id _GOId);
 
+protected:
+    gameObjectManager() {}; // Prevent construction
+    gameObjectManager(const gameObjectManager&); // Prevent construction by copying
+    gameObjectManager& operator=(const gameObjectManager&); // Prevent assignment
+    ~gameObjectManager(); // Prevent unwanted destruction
 private:
-    gameObjectManager();
-
-    static gameObjectManager goManager_;
+    static gameObjectManager *goManager_;
 
     static bool goManagerFlag_;
-
-    // Returns next free id for gameObject
-    const go_type_id getNextFreeId();
 
     // Map containing all created gameObjects
     GameObject_map gameObjectMap_;
